@@ -82,7 +82,7 @@ module MiddlemanSimpleThumbnailer
           resize_specs_modified = true
         end
         img = MiddlemanSimpleThumbnailer::Image.new(img_path, resize_to, builder.app, options)
-        if !img.cached_thumbnail_available? or !File.exists?(img.resized_img_abs_path)
+        if !img.cached_thumbnail_available? or !File.exist?(img.resized_img_abs_path)
           builder.thor.say_status :create, "#{img.resized_img_abs_path}"
           img.save!
         end
@@ -106,10 +106,10 @@ module MiddlemanSimpleThumbnailer
     def write_specs_file
       data_file, ext = get_data_file_path_ext
       FileUtils.mkdir_p File::dirname(data_file)
-      if File.exists?(data_file) && options.specs_data_save_old
+      if File.exist?(data_file) && options.specs_data_save_old
         i = 1
         old_data_file = "#{data_file}.#{i}"
-        while File.exists?(old_data_file) && (i+=1) < ((2**16)-1)
+        while File.exist?(old_data_file) && (i+=1) < ((2**16)-1)
           old_data_file = "#{data_file}.#{i}"
         end
         raise "Middleman-simple-thumbnailer : could not find a filename for saving the data file " if i == ((2**16)-1)
@@ -162,7 +162,7 @@ module MiddlemanSimpleThumbnailer
         end
         res
       end
-    
+
     end
 
   end
